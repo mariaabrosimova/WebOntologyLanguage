@@ -1,0 +1,400 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xml:base="http://test.org/onto.owl"
+         xmlns="http://test.org/onto.owl#">
+
+<owl:Ontology rdf:about="http://test.org/onto.owl"/>
+
+<owl:ObjectProperty rdf:about="#performs_in_the_genre">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+  <rdfs:range rdf:resource="#Genre"/>
+  <rdfs:domain rdf:resource="#Executor"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#genre_of_performance">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+  <rdfs:domain rdf:resource="#Genre"/>
+  <rdfs:range rdf:resource="#Executor"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#added">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+  <rdfs:domain rdf:resource="#Genre"/>
+  <rdfs:range rdf:resource="#Playlist"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#performs_the_work">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+  <rdfs:range rdf:resource="#Title"/>
+  <rdfs:domain rdf:resource="#Executor"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#listener_subscribes">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:range rdf:resource="#Subscription"/>
+  <rdfs:domain rdf:resource="#Listener"/>
+  <owl:inverseOf rdf:resource="#subscription_is_being_issued"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#subscription_is_being_issued">
+  <rdfs:domain rdf:resource="#Subscription"/>
+  <rdfs:range rdf:resource="#Listener"/>
+  <owl:inverseOf rdf:resource="#listener_subscribes"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#creates_by_theme">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+  <rdfs:domain rdf:resource="#Author"/>
+  <rdfs:range rdf:resource="#Theme"/>
+</owl:ObjectProperty>
+
+<owl:DatatypeProperty rdf:about="#Listener_mail">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  <rdfs:domain rdf:resource="#Listener"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Listener_ID">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+  <rdfs:domain rdf:resource="#Listener"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Executor_ID">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+  <rdfs:domain rdf:resource="#Executor"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Executor_profit">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+  <rdfs:domain rdf:resource="#Executor"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Author_profit">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+  <rdfs:domain rdf:resource="#Author"/>
+</owl:DatatypeProperty>
+
+<owl:Class rdf:about="#Music">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Title">
+  <rdfs:subClassOf rdf:resource="#Music"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Genre">
+  <rdfs:subClassOf rdf:resource="#Music"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Executor">
+  <rdfs:subClassOf rdf:resource="#Music"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Tutor">
+  <rdfs:subClassOf rdf:resource="#Music"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Playlist">
+  <rdfs:subClassOf rdf:resource="#Music"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Playlist_by_user">
+  <rdfs:subClassOf rdf:resource="#Playlist"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Playlist_recommended">
+  <rdfs:subClassOf rdf:resource="#Playlist"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Playlist_recommended_by_algorithm">
+  <rdfs:subClassOf rdf:resource="#Playlist_recommended"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Playlist_recommended_by_editor">
+  <rdfs:subClassOf rdf:resource="#Playlist_recommended"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Podcast">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Title_Podcast">
+  <rdfs:subClassOf rdf:resource="#Podcast"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Author">
+  <rdfs:subClassOf rdf:resource="#Podcast"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Theme">
+  <rdfs:subClassOf rdf:resource="#Podcast"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Chart">
+  <rdfs:subClassOf rdf:resource="#Podcast"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Subscription">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Duration">
+  <rdfs:subClassOf rdf:resource="#Subscription"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Type">
+  <rdfs:subClassOf rdf:resource="#Subscription"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Family_Subscription">
+  <rdfs:subClassOf rdf:resource="#Type"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Standart_Subscription">
+  <rdfs:subClassOf rdf:resource="#Type"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Developer">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Listener">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<Genre rdf:about="#Джаз">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <genre_of_performance rdf:resource="#Amy Winehouse"/>
+</Genre>
+
+<Genre rdf:about="#Классическая музыка">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <genre_of_performance rdf:resource="#Ludovico Einaudi"/>
+  <genre_of_performance rdf:resource="#Hans Zimmer"/>
+</Genre>
+
+<Genre rdf:about="#Поп">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <genre_of_performance rdf:resource="#Егор Крид"/>
+  <genre_of_performance rdf:resource="#Мак$им"/>
+  <genre_of_performance rdf:resource="#Lana del Rey"/>
+</Genre>
+
+<Genre rdf:about="#Рок">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <genre_of_performance rdf:resource="#Arctic Monkeys"/>
+  <genre_of_performance rdf:resource="#Lana del Rey"/>
+</Genre>
+
+<Genre rdf:about="#Хип-хоп">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Genre>
+
+<Genre rdf:about="#Электронная музыка">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <genre_of_performance rdf:resource="#Daft Punk"/>
+</Genre>
+
+<Genre rdf:about="#Рэп">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <genre_of_performance rdf:resource="#Eminem"/>
+</Genre>
+
+<Executor rdf:about="#Егор Крид">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <performs_in_the_genre rdf:resource="#Поп"/>
+  <performs_in_the_genre rdf:resource="#Рэп"/>
+  <performs_the_work rdf:resource="#Отпускаю"/>
+  <Executor_ID rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</Executor_ID>
+  <Executor_profit rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1000</Executor_profit>
+</Executor>
+
+<Executor rdf:about="#Мак$им">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <performs_in_the_genre rdf:resource="#Поп"/>
+  <performs_the_work rdf:resource="#Отпускаю"/>
+  <Executor_ID rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</Executor_ID>
+  <Executor_profit rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2000</Executor_profit>
+</Executor>
+
+<Executor rdf:about="#Amy Winehouse">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <performs_in_the_genre rdf:resource="#Джаз"/>
+  <performs_the_work rdf:resource="#October_song"/>
+  <Executor_ID rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</Executor_ID>
+  <Executor_profit rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3000</Executor_profit>
+</Executor>
+
+<Executor rdf:about="#Arctic Monkeys">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <performs_in_the_genre rdf:resource="#Рок"/>
+  <performs_the_work rdf:resource="#Fluorescent Adolescent"/>
+  <Executor_ID rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</Executor_ID>
+  <Executor_profit rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4000</Executor_profit>
+</Executor>
+
+<Executor rdf:about="#Lana del Rey">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <performs_in_the_genre rdf:resource="#Поп"/>
+  <performs_in_the_genre rdf:resource="#Рок"/>
+  <performs_the_work rdf:resource="#Dark_Paradise"/>
+  <performs_the_work rdf:resource="#Radio"/>
+  <Executor_ID rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</Executor_ID>
+  <Executor_profit rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5000</Executor_profit>
+</Executor>
+
+<Executor rdf:about="#Ludovico Einaudi">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <performs_in_the_genre rdf:resource="#Классическая музыка"/>
+  <performs_the_work rdf:resource="#Experience"/>
+  <Executor_ID rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</Executor_ID>
+  <Executor_profit rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6000</Executor_profit>
+</Executor>
+
+<Executor rdf:about="#Hans Zimmer">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <performs_in_the_genre rdf:resource="#Классическая музыка"/>
+  <performs_the_work rdf:resource="#S.T.A.Y."/>
+  <Executor_ID rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">7</Executor_ID>
+  <Executor_profit rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">7000</Executor_profit>
+</Executor>
+
+<Executor rdf:about="#Daft Punk">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <performs_in_the_genre rdf:resource="#Электронная музыка"/>
+  <performs_the_work rdf:resource="#Get_lucky"/>
+  <Executor_ID rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">8</Executor_ID>
+  <Executor_profit rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">8000</Executor_profit>
+</Executor>
+
+<Executor rdf:about="#Eminem">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <performs_in_the_genre rdf:resource="#Рэп"/>
+  <performs_the_work rdf:resource="#Rap god"/>
+  <Executor_ID rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">9</Executor_ID>
+  <Executor_profit rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">9000</Executor_profit>
+</Executor>
+
+<Author rdf:about="#Маменко">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <creates_by_theme rdf:resource="#Юмор"/>
+  <Author_profit rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5000</Author_profit>
+</Author>
+
+<Author rdf:about="#Юзефович">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <creates_by_theme rdf:resource="#Наука и образование"/>
+  <Author_profit rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">7000</Author_profit>
+</Author>
+
+<Theme rdf:about="#Юмор">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Theme>
+
+<Theme rdf:about="#Наука и образование">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Theme>
+
+<Listener rdf:about="#Абрамов">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <listener_subscribes rdf:resource="#Стандартная подписка на 1 месяц"/>
+  <Listener_ID rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</Listener_ID>
+  <Listener_mail rdf:datatype="http://www.w3.org/2001/XMLSchema#string">abramov2000@mail.ru</Listener_mail>
+</Listener>
+
+<Listener rdf:about="#Бычков">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <listener_subscribes rdf:resource="#Стандартная подписка на 1 месяц"/>
+  <Listener_ID rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</Listener_ID>
+  <Listener_mail rdf:datatype="http://www.w3.org/2001/XMLSchema#string">bychkov@mail.ru</Listener_mail>
+</Listener>
+
+<Listener rdf:about="#Васнецова">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <listener_subscribes rdf:resource="#Стандартная подписка на 1 месяц"/>
+  <Listener_ID rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</Listener_ID>
+  <Listener_mail rdf:datatype="http://www.w3.org/2001/XMLSchema#string">fan_of_Sergey_Lazarev@mail.ru</Listener_mail>
+</Listener>
+
+<Listener rdf:about="#Райан-Гослингова">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <listener_subscribes rdf:resource="#Семейная подписка на 1 месяц"/>
+  <Listener_ID rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</Listener_ID>
+  <Listener_mail rdf:datatype="http://www.w3.org/2001/XMLSchema#string">real_ryan_goslings_wife@mail.ru</Listener_mail>
+</Listener>
+
+<Developer rdf:about="#Разработчиков">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <added rdf:resource="#Осенний плейлист"/>
+</Developer>
+
+<Developer rdf:about="#Яндексов">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <added rdf:resource="#Тик-ток топ"/>
+</Developer>
+
+<Playlist_recommended_by_editor rdf:about="#Осенний плейлист">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Playlist_recommended_by_editor>
+
+<Playlist_recommended_by_editor rdf:about="#Тик-ток топ">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Playlist_recommended_by_editor>
+
+<Subscription rdf:about="#Стандартная подписка на 1 месяц">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Subscription>
+
+<Family_Subscription rdf:about="#Семейная подписка на 1 месяц">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Family_Subscription>
+
+<Title rdf:about="#Отпускаю">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Title>
+
+<Title rdf:about="#October_song">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Title>
+
+<Title rdf:about="#Rap god">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Title>
+
+<Title rdf:about="#Fluorescent Adolescent">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Title>
+
+<Title rdf:about="#Dark_Paradise">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Title>
+
+<Title rdf:about="#Radio">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Title>
+
+<Title rdf:about="#Experience">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Title>
+
+<Title rdf:about="#S.T.A.Y.">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Title>
+
+<Title rdf:about="#Get_lucky">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Title>
+
+
+</rdf:RDF>
